@@ -1,4 +1,6 @@
-# Internal Transition
+# Internal Transition  
+
+[![Build and Test](https://github.com/Myoldmopar/InternalTransition/actions/workflows/test_pull_requests.yml/badge.svg)](https://github.com/Myoldmopar/InternalTransition/actions/workflows/test_pull_requests.yml)
 
 Just a quick repo set up to see what things would look like if we pulled file transition into EnergyPlus itself, and stopped providing Fortran-based utilities.
 
