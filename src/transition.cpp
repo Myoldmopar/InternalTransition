@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <json.hpp>
 
 #include "transition.h"
@@ -13,5 +15,17 @@ bool convert251to252(nlohmann::json & json) {
         json["coil:cooling:dx"]["schedule"] = "default";
     }
     json["version"] = "25.2";
+    return true;
+}
+
+bool applyAnyConversion(nlohmann::json &json) {
+    if (json["version"] == "25.1") {
+        bool const success = convert251to252(json);
+        if (!success) {
+            std::cerr << "Failed to convert input json" << std::endl;
+            return false;
+        }
+        // std::cout << "Converted inputs from 25.1 to 25.2" << std::endl;
+    }
     return true;
 }

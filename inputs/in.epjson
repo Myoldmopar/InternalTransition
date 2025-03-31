@@ -1,0 +1,7 @@
+{
+  "version": "25.1",
+  "coil:cooling:dx": {
+    "name": "My Coil",
+    "capacity": 12.0
+  }
+}

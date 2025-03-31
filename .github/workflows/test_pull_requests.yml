@@ -1,0 +1,28 @@
+name: Build and Test
+
+on: push
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+
+    - run: cmake -E make_directory ./build/
+
+    - name: Configure CMake
+      working-directory: ./build
+      run: cmake -G "Unix Makefiles" ../
+
+    - name: Build
+      working-directory: ./build
+      run: cmake --build . -j 4
+
+    - name: Run Unit Tests
+      run: ./build/InternalTransitionTest
+
+    - name: Integration Test - IDF
+      run: ./build/InternalTransition ./inputs/in.idf
+
+    - name: Integration Test - JSON
+      run: ./build/InternalTransition ./inputs/in.epjson

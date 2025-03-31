@@ -1,19 +1,18 @@
-#include <iostream>
+#include <fstream>
 
 #include <json.hpp>
 
+#include "file_format.h"
 #include "transition.h"
 
-int main() {
-    nlohmann::json inputJson;
-    inputJson["version"] = "25.1";
-    if (inputJson["version"] != "25.2") {
-        bool const success = convert251to252(inputJson);
-        if (!success) {
-            std::cerr << "Failed to convert input json" << std::endl;
-            return 1;
-        }
-        std::cout << "Converted inputs from 25.1 to 25.2" << std::endl;
+int main(int, char const *argv[]) {
+    // read inputs into a json structure
+    nlohmann::json inputJson = readInputs(argv[1]);
+    // check the version and update as needed
+    bool const success = applyAnyConversion(inputJson);
+    if (!success) {
+        return 1;
     }
+    // finally do any simulation
     // simulate(foo);
 }
